@@ -1,0 +1,61 @@
+{
+  "name": "documentdb-cli",
+  "author": "Muhammad Hasan Khan",
+  "version": "0.0.0",
+  "description": "Cross platform command line interface for DocumentDB",
+  "tags": [
+    "documentdb",
+    "cli"
+  ],
+  "keywords": [
+    "node",
+    "azure",
+    "cli",
+    "documentdb"
+  ],
+  "main": "./lib/cli.js",
+  "preferGlobal": true,
+  "engines": {
+    "node": ">= 4.6"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "dependencies": {
+    "chardet": "^0.1.0",
+    "commander": "^2.9.0",
+    "documentdb": "^1.10.0",
+    "easy-table": "^1.0.0",
+    "iconv-lite": "^0.4.13",
+    "mstring": "^0.1.2",
+    "q": "^2.0.3",
+    "sprintf-js": "^1.0.3",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.3.4",
+    "ya-csv": "^0.9.4"
+  },
+  "homepage": "https://github.com/hasankhan/documentdb-cli",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hasankhan/documentdb-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hasankhan/documentdb-cli/issues"
+  },
+  "scripts": {
+    "test": "npm -s run-script jshint && npm -s run-script unit",
+    "jshint": "jshint lib",
+    "unit": "jasmine-node test"
+  },
+  "bin": {
+    "documentdb": "./bin/documentdb"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.14.3",
+    "jshint": "~2.5.1",
+    "proxyquire": "~1.0.0"
+  }
+}
