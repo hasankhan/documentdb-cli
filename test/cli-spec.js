@@ -104,6 +104,13 @@ describe('DocumentDBCli', function () {
             lineCallback = prompt.on.argsForCall[0][1];
         });
 
+        it('shows help when server is not specified', function () {
+            optionsHost = '';
+            options.showHelp = jasmine.createSpy();
+            cli.run([], {});
+            expect(options.showHelp).toHaveBeenCalled();
+        });
+
         it('does not exit if command returns an error', function (done) {
             options.args = {};
             dbservice.connect = jasmine.createSpy().andReturn(Q());
