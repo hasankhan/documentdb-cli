@@ -1,0 +1,5 @@
+{
+    "prompt": "documentdb> ",
+    "keywords": [ "select", "top", "from", "where", "order by"
+    ]
+}
