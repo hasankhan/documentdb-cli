@@ -1,5 +1,12 @@
 {
     "prompt": "documentdb> ",
-    "keywords": [ "select", "top", "from", "where", "order by"
+    "keywords": [ "select", "top", "from", "where", "order by", "and", "or", "not", "join",
+    "abs", "ceiling", "exp", "floor", "log", "log10", "power", "round", "sign", "sqrt", 
+    "square", "trunc", "acos", "asin", "atan", "atn2", "cos", "cot", "degrees", "pi",
+    "radians", "sin", "tan", "is_array", "is_bool", "is_null", "is_number", "is_object",
+    "is_string", "is_defined", "is_primitive","concat", "contains", "endswith", "index_of", 
+    "left", "length", "lower", "ltrim", "replace", "replicate", "reverse", "right", "rtrim", 
+    "startswith", "substring", "upper", "array_concat", "array_contains", "array_length",
+    "array_slice", "st_distance", "st_within", "st_isvalid", "st_isvaliddetailed"
     ]
 }
