@@ -7,6 +7,6 @@
     "is_string", "is_defined", "is_primitive","concat", "contains", "endswith", "index_of", 
     "left", "length", "lower", "ltrim", "replace", "replicate", "reverse", "right", "rtrim", 
     "startswith", "substring", "upper", "array_concat", "array_contains", "array_length",
-    "array_slice", "st_distance", "st_within", "st_isvalid", "st_isvaliddetailed"
+    "array_slice", "st_distance", "st_within", "st_isvalid", "st_isvaliddetailed", "between"
     ]
 }
