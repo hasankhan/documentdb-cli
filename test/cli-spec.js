@@ -8,11 +8,14 @@ describe('DocumentDBCli', () => {
 
     function setup() {
         prompt = {
+            addCommand: jasmine.createSpy(),
             on: jasmine.createSpy()
         };
         dbservice = {};
         options = {};
-        invoker = {};
+        invoker = {
+            commands: []
+        };
         resultWriter = { create: jasmine.createSpy() };
         messages = {};
         exit = jasmine.createSpy();
