@@ -1,7 +1,7 @@
 {
   "name": "documentdb-cli",
   "author": "Muhammad Hasan Khan",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Cross platform command line interface for DocumentDB",
   "tags": [
     "documentdb",
