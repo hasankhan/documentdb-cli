@@ -2,7 +2,7 @@ var proxyquire =  require('proxyquire').noPreserveCache(),
     M = require('mstring'),
     utils = require('./utils');
 
-describe('ResultWriter', function() {
+describe('ResultWriter', () => {
     var ResultWriter, csvWriter;
 
     function setup() {
@@ -15,8 +15,8 @@ describe('ResultWriter', function() {
         });
     }
 
-    describe('create', function() {
-        beforeEach(function() {
+    describe('create', () => {
+        beforeEach(() => {
             setup();
         });
 
@@ -24,32 +24,32 @@ describe('ResultWriter', function() {
             expect(ResultWriter.create(code) instanceof type).toBe(true);
         }
 
-        it('returns JsonWriter for j and json', function() {
+        it('returns JsonWriter for j and json', () => {
             testCreate('j', ResultWriter.JsonWriter);
             testCreate('json', ResultWriter.JsonWriter);
         });
 
-        it('returns XmlWriter for x and xml', function() {
+        it('returns XmlWriter for x and xml', () => {
             testCreate('x', ResultWriter.XmlWriter);
             testCreate('xml', ResultWriter.XmlWriter);
         });
 
-        it('returns CsvWriter for c and csv', function() {
+        it('returns CsvWriter for c and csv', () => {
             testCreate('c', ResultWriter.CsvWriter);
             testCreate('csv', ResultWriter.CsvWriter);
         });
 
-        it('returns TableWriter for t and table', function() {
+        it('returns TableWriter for t and table', () => {
             testCreate('t', ResultWriter.TableWriter);
             testCreate('table', ResultWriter.TableWriter);
         });
 
-        it('throws for unknown code', function() {
+        it('throws for unknown code', () => {
             expect(ResultWriter.create.bind(null, 'abc')).toThrow();
         });
     });
 
-    describe('JsonWriter', function() {
+    describe('JsonWriter', () => {
         var writer, output = '';
 
         beforeEach(function(){
@@ -59,11 +59,11 @@ describe('ResultWriter', function() {
             });
         });
 
-        afterEach(function() {
+        afterEach(() => {
             console.log = console.log.originalValue;
         });
 
-        it('writes json', function() {
+        it('writes json', () => {
             var result = [{
                 title: 'abc',
                 count: 54
@@ -85,7 +85,7 @@ describe('ResultWriter', function() {
         });
     });
 
-    describe('XmlWriter', function() {
+    describe('XmlWriter', () => {
         var writer, output = '';
 
         beforeEach(function(){
@@ -95,11 +95,11 @@ describe('ResultWriter', function() {
             });
         });
 
-        afterEach(function() {
+        afterEach(() => {
             console.log = console.log.originalValue;
         });
 
-        it('writes xml', function() {
+        it('writes xml', () => {
             var result = [{
                 title: 'abc',
                 count: 54
@@ -124,7 +124,7 @@ describe('ResultWriter', function() {
         });
     });
 
-    describe('TableWriter', function() {
+    describe('TableWriter', () => {
         var writer, output = '';
 
         beforeEach(function(){
@@ -134,11 +134,11 @@ describe('ResultWriter', function() {
             });
         });
 
-        afterEach(function() {
+        afterEach(() => {
             console.log = console.log.originalValue;
         });
 
-        it('writes tabular data', function() {
+        it('writes tabular data', () => {
             var result = [{
                 title: 'abc',
                 count: 54
@@ -159,7 +159,7 @@ describe('ResultWriter', function() {
         });
     });
 
-    describe('CsvWriter', function() {
+    describe('CsvWriter', () => {
         var writer, output = '';
 
         beforeEach(function(){
@@ -167,7 +167,7 @@ describe('ResultWriter', function() {
             writer = new ResultWriter.CsvWriter();
         });
 
-        it('writes csv', function() {
+        it('writes csv', () => {
             var result = [{
                 title: 'abc',
                 count: 54

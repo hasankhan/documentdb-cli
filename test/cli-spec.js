@@ -3,7 +3,7 @@ var proxyquire = require('proxyquire').noPreserveCache(),
     _ = require('underscore'),
     utils = require('./utils');
 
-describe('DocumentDBCli', function () {
+describe('DocumentDBCli', () => {
     var prompt, dbservice, options, invoker, resultWriter, messages, exit, cli, optionsHost;
 
     function setup() {
@@ -30,32 +30,32 @@ describe('DocumentDBCli', function () {
         cli = new DocumentDBCli();
 
         options.init = jasmine.createSpy();
-        options.getConnectionInfo = jasmine.createSpy().andCallFake(function () { return { host: optionsHost }; });
+        options.getConnectionInfo = jasmine.createSpy().andCallFake(() => { return { host: optionsHost }; });
         options.args = {};
         messages.connecting = jasmine.createSpy();
     }
 
-    describe('run', function () {
-        beforeEach(function () {
+    describe('run', () => {
+        beforeEach(() => {
             setup();
         });
 
-        it('assumes interactive mode if query is not specified', function () {
+        it('assumes interactive mode if query is not specified', () => {
             options.args = {};
             testInteractiveMode(true);
         });
 
-        it('assumes non-interactive mode if query is specified', function () {
+        it('assumes non-interactive mode if query is specified', () => {
             options.args = { query: '.tables' };
             testInteractiveMode(false);
         });
 
-        it('exits on connection error', function (done) {
+        it('exits on connection error', done => {
             var err = jasmine.any(Object);
             dbservice.connect = jasmine.createSpy().andReturn(Q.reject(err));
             messages.connectionerror = jasmine.createSpy();
 
-            exit.andCallFake(function (code) {
+            exit.andCallFake( (code) => {
                 expect(code).toEqual(-1);
                 expect(messages.connectionerror).toHaveBeenCalledWith(err);
                 done();
@@ -64,11 +64,11 @@ describe('DocumentDBCli', function () {
             cli.run([], {});
         });
 
-        it('runs the command if specified in query argument', function (done) {
+        it('runs the command if specified in query argument', done => {
             var command = '.collections';
             options.args = { query: command };
             dbservice.connect = jasmine.createSpy().andReturn(Q());
-            invoker.run = function (line) {
+            invoker.run = (line) => {
                 expect(line).toEqual(command);
                 done();
             };
@@ -76,7 +76,7 @@ describe('DocumentDBCli', function () {
             cli.run([], {});
         });
 
-        it('combines commands if ends with slash', function (done) {
+        it('combines commands if ends with slash', done => {
             options.args = {};
             dbservice.connect = jasmine.createSpy().andReturn(Q());
             var commands = ['select 1\\', 'from dual'];
@@ -104,14 +104,14 @@ describe('DocumentDBCli', function () {
             lineCallback = prompt.on.argsForCall[0][1];
         });
 
-        it('shows help when server is not specified', function () {
+        it('shows help when server is not specified', () => {
             optionsHost = '';
             options.showHelp = jasmine.createSpy();
             cli.run([], {});
             expect(options.showHelp).toHaveBeenCalled();
         });
 
-        it('does not exit if command returns an error', function (done) {
+        it('does not exit if command returns an error', done => {
             options.args = {};
             dbservice.connect = jasmine.createSpy().andReturn(Q());
             var err = new Error();
@@ -122,10 +122,10 @@ describe('DocumentDBCli', function () {
             messages.error = jasmine.createSpy();
             var lineCallback;
 
-            var nextFuncs = [function (code) {
+            var nextFuncs = [(code) => {
                 lineCallback(command);
                 expect(invoker.run).toHaveBeenCalledWith(command);
-            }, function (code) {
+            }, (code) => {
                 expect(messages.error).toHaveBeenCalledWith(err);
                 expect(code).toEqual(-1);
                 done();
