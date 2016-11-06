@@ -56,14 +56,21 @@ To get the list of all commands use the '.help' command
 ```bash
 documentdb> .help
 
-command          description
----------------  ---------------------------------------
-.help            Shows this message
-.databases       Lists all the databases
-.collections     Lists all the collections
-.use db|coll id  Switches current database or collection
-.read FILENAME   Execute commands in a file
-.quit            Exit the cli
+command            description
+-----------------  ---------------------------------------
+.help              Shows this message
+.databases         Lists all the databases
+.collections       Lists all the collections
+.storedprocs       Lists all the stored procedures
+.conflicts         Lists all the conflicts
+.triggers          Lists all the triggers
+.functions         Lists all the user defined functions
+.permissions USER  Lists all the permissions
+.attachments DOC   Lists all the attachments
+.users             Lists all the users
+.use db|coll ID    Switches current database or collection
+.read FILENAME     Execute commands in a file
+.quit              Exit the cli
 ```
 
 To exit the cli use the '.quit' command
