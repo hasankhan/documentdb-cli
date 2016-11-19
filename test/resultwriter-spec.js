@@ -1,4 +1,4 @@
-var proxyquire =  require('proxyquire').noPreserveCache(),
+var proxyquire = require('proxyquire').noPreserveCache(),
     M = require('mstring'),
     utils = require('./utils');
 
@@ -52,9 +52,9 @@ describe('ResultWriter', () => {
     describe('JsonWriter', () => {
         var writer, output = '';
 
-        beforeEach(function(){
+        beforeEach(() => {
             writer = new ResultWriter.JsonWriter();
-            spyOn(console, 'log').andCallFake(function(text){
+            spyOn(console, 'log').andCallFake(text => {
                 output += text;
             });
         });
@@ -69,7 +69,7 @@ describe('ResultWriter', () => {
                 count: 54
             }];
 
-            var json =  M(function(){ /***
+            var json = M(function() { /***
             [{
                 "title": "abc",
                 "count": 54
@@ -88,9 +88,9 @@ describe('ResultWriter', () => {
     describe('XmlWriter', () => {
         var writer, output = '';
 
-        beforeEach(function(){
+        beforeEach(() => {
             writer = new ResultWriter.XmlWriter();
-            spyOn(console, 'log').andCallFake(function(text){
+            spyOn(console, 'log').andCallFake(text => {
                 output += text;
             });
         });
@@ -105,7 +105,7 @@ describe('ResultWriter', () => {
                 count: 54
             }];
 
-            var xml =  M(function(){ /***
+            var xml = M(function() { /***
             <?xml version="1.0"?>
             <result>
                 <item>
@@ -127,9 +127,9 @@ describe('ResultWriter', () => {
     describe('TableWriter', () => {
         var writer, output = '';
 
-        beforeEach(function(){
+        beforeEach(() => {
             writer = new ResultWriter.TableWriter();
-            spyOn(console, 'log').andCallFake(function(text){
+            spyOn(console, 'log').andCallFake(text => {
                 output += text;
             });
         });
@@ -144,7 +144,7 @@ describe('ResultWriter', () => {
                 count: 54
             }];
 
-            var table =  M(function(){ /***
+            var table = M(function() { /***
             title   count
             -----   -----
             abc     54
@@ -162,7 +162,7 @@ describe('ResultWriter', () => {
     describe('CsvWriter', () => {
         var writer, output = '';
 
-        beforeEach(function(){
+        beforeEach(() => {
             csvWriter.writeRecord.reset();
             writer = new ResultWriter.CsvWriter();
         });

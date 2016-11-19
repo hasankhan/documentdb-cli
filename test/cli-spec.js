@@ -89,16 +89,16 @@ describe('DocumentDBCli', () => {
 
             var lineCallback;
 
-            var nextFuncs = [function (code) {
+            var nextFuncs = [code => {
                 lineCallback(commands[0]);
-            }, function (code) {
+            }, code => {
                 lineCallback(commands[1]);
                 expect(invoker.run).toHaveBeenCalledWith('select 1\r\nfrom dual');
                 expect(invoker.run.callCount).toEqual(1);
                 done();
             }];
 
-            prompt.next = jasmine.createSpy().andCallFake(function (code) {
+            prompt.next = jasmine.createSpy().andCallFake(code => {
                 var impl = nextFuncs.shift();
                 impl(code);
             });
@@ -134,7 +134,7 @@ describe('DocumentDBCli', () => {
                 done();
             }];
 
-            prompt.next = jasmine.createSpy().andCallFake(function (code) {
+            prompt.next = jasmine.createSpy().andCallFake(code => {
                 var impl = nextFuncs.shift();
                 impl(code);
             });

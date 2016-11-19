@@ -9,10 +9,10 @@ describe('Invoker', () => {
     var readline, exit, invoker, db, messages, writer;
 
     function mockCommands(invoker, mocks, db, names) {
-        names.forEach(function(name){
+        names.forEach(name => {
             var CommandType = proxyquire('../lib/commands/' + name, mocks);
             var command = new CommandType(db);
-            invoker.commands = _.map(invoker.commands, function(cmd) {
+            invoker.commands = _.map(invoker.commands, cmd => {
                 return (cmd.constructor.name == command.constructor.name) ? command : cmd; 
             });
         });        
@@ -49,7 +49,7 @@ describe('Invoker', () => {
     }
 
     it('.help returns commands reference', done => {
-        writer.write.andCallFake(function(items) {
+        writer.write.andCallFake(items => {
             var commands = [
                 { command: '.help', description: 'Shows this message' },
                 { command: '.databases', description: 'Lists all the databases' },
@@ -147,8 +147,8 @@ describe('Invoker', () => {
 
         expect(readline.on).toHaveBeenCalledWith('line', jasmine.any(Function));
 
-        lineCallback = _.find(readline.on.argsForCall, function(args) { return args[0] == 'line'; })[1];
-        db.query.andCallFake(function(query) {
+        lineCallback = _.find(readline.on.argsForCall, args => args[0] == 'line')[1];
+        db.query.andCallFake(query => {
             expect(messages.echo).toHaveBeenCalledWith('SELECT *\r\nFROM test');
             expect(query).toEqual('SELECT *\r\nFROM test');
             done();

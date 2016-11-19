@@ -69,7 +69,7 @@ describe('Options', ()=> {
            setup(); 
         });
 
-        it('defaults the config file name to documentdb-conf.json', function () {
+        it('defaults the config file name to documentdb-conf.json', () => {
             path.resolve = jasmine.createSpy().andReturn('documentdb-conf.json');
             fs.existsSync = jasmine.createSpy().andReturn(true);
 
@@ -78,7 +78,7 @@ describe('Options', ()=> {
             expect(fs.existsSync).toHaveBeenCalledWith('documentdb-conf.json');
         });
 
-        it('creates the config object', function () {
+        it('creates the config object', () => {
             path.resolve = jasmine.createSpy().andReturn('test-conf.json');
             fs.existsSync = jasmine.createSpy().andReturn(true);
 
@@ -103,7 +103,7 @@ describe('Options', ()=> {
             });
         });
 
-        it('args override config', function () {
+        it('args override config', () => {
             path.resolve = jasmine.createSpy().andReturn('test-conf.json');
             fs.existsSync = jasmine.createSpy().andReturn(true);
 
