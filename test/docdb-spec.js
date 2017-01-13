@@ -1,4 +1,4 @@
-(() => {
+(function () {
     "use strict";
 
     var proxyquire = require('proxyquire').noPreserveCache(),
