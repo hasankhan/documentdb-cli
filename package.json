@@ -46,7 +46,7 @@
     "url": "https://github.com/hasankhan/documentdb-cli/issues"
   },
   "scripts": {
-    "prepublish": "crlf --set=LF bin/documentdb",
+    "prepublishOnly": "crlf --set=LF bin/documentdb",
     "test": "npm -s run-script jshint && npm -s run-script unit",
     "jshint": "jshint lib",
     "unit": "jasmine-node test"
