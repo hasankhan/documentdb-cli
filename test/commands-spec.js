@@ -23,7 +23,8 @@ describe('Invoker', () => {
         db = {};
         readline = {
             on: jasmine.createSpy(),
-            pause: jasmine.createSpy()
+            pause: jasmine.createSpy(),
+            close: jasmine.createSpy()
         };
 
         mockDbFunc('query');
@@ -153,7 +154,7 @@ describe('Invoker', () => {
             expect(query).toEqual('SELECT *\r\nFROM test');
             done();
 
-            return new Q(0);
+            return Q(0);
         });
 
         lineCallback('SELECT *\\');
