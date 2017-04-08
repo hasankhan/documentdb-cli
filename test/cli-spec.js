@@ -4,18 +4,20 @@ var proxyquire = require('proxyquire').noPreserveCache(),
     utils = require('./utils');
 
 describe('DocumentDBCli', () => {
-    var prompt, dbservice, options, invoker, resultWriter, messages, exit, cli, optionsHost;
+    var prompt, dbservice, options, invoker, resultWriter, messages, exit, cli, optionsHost, promptEventHandlers;
 
     function setup() {
         prompt = {
             addCommand: jasmine.createSpy(),
             on: jasmine.createSpy()
         };
+        promptEventHandlers = {};
         dbservice = {};
         options = {};
         invoker = {
             commands: []
         };
+        prompt.on.andCallFake((event, handler)=>promptEventHandlers[event]=handler);
         resultWriter = { create: jasmine.createSpy() };
         messages = {};
         exit = jasmine.createSpy();
@@ -87,12 +89,10 @@ describe('DocumentDBCli', () => {
             messages.connected = jasmine.createSpy();
             messages.welcome = jasmine.createSpy();
 
-            var lineCallback;
-
             var nextFuncs = [code => {
-                lineCallback(commands[0]);
+                promptEventHandlers['line'](commands[0]);
             }, code => {
-                lineCallback(commands[1]);
+                promptEventHandlers['line'](commands[1]);
                 expect(invoker.run).toHaveBeenCalledWith('select 1\r\nfrom dual');
                 expect(invoker.run.callCount).toEqual(1);
                 done();
@@ -104,7 +104,6 @@ describe('DocumentDBCli', () => {
             });
 
             cli.run([], {});
-            lineCallback = prompt.on.argsForCall[0][1];
         });
 
         it('shows help when server is not specified', () => {
@@ -123,10 +122,9 @@ describe('DocumentDBCli', () => {
             messages.connected = jasmine.createSpy();
             messages.welcome = jasmine.createSpy();
             messages.error = jasmine.createSpy();
-            var lineCallback;
-
+            
             var nextFuncs = [(code) => {
-                lineCallback(command);
+                promptEventHandlers['line'](command);
                 expect(invoker.run).toHaveBeenCalledWith(command);
             }, (code) => {
                 expect(messages.error).toHaveBeenCalledWith(err);
@@ -140,7 +138,6 @@ describe('DocumentDBCli', () => {
             });
 
             cli.run([], {});
-            lineCallback = prompt.on.argsForCall[0][1];
         });
 
         function testInteractiveMode(expectedValue) {
